@@ -38,10 +38,18 @@ def start():
 @bottle.post('/move')
 def move():
     data = bottle.request.json
-
-    # TODO: Do things with data
-    
+    height = data['height']
+    width = data['width']
     directions = ['up', 'down', 'left', 'right']
+    ourSnak
+
+    for snake in data['snakes']:
+        if snake['name'] == 'JSTMNA':
+            ourSnak = snake
+
+
+
+
     direction = random.choice(directions)
     print direction
     return {
