@@ -57,7 +57,6 @@ def move():
         dirr = find_food(close_food,xhead,yhead,directions)
     elif (weaker_snake[0]!=False):
         dirr = find_food(weaker_snake, xhead,yhead,directions)
-
     else:
         dirr = find_food(tail, xhead,yhead,directions)
 
@@ -126,14 +125,14 @@ def find_food(close_food,xhead,yhead,directions):
 
 def find_weaker_snake_head(data):
     our_snek = data['you']
-    our_snek_len = len(our_snek['body']['data'])
+    our_snek_len = ourSnak['length']
     our_snek_id = our_snek['id']
     closeSnakex = False
     closeSnakey = False
     snakes = data['snakes']['data']
     for snake in snakes:
         body_parts = snake['body']['data']
-        if len(body_parts) < our_snek_len and snake['id'] != our_snek_id:
+        if snake['length'] < our_snek_len:
             closeSnakex = body_parts['x']
             closeSnakey = body_parts['y']
             return (closeSnakex,closeSnakey)
