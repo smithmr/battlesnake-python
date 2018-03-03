@@ -70,7 +70,7 @@ def move():
 
     return {
         'move': dirr,
-        'taunt': 'battlesnake-python!'
+        'taunt': 'DERP'
     }
 
 
