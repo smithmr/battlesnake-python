@@ -42,10 +42,6 @@ def move():
     width = data['width']
     directions = ['up', 'down', 'left', 'right']
     ourSnak = data['you']
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 
     parts = ourSnak['body']['data']
     xhead = parts[0]['x']
