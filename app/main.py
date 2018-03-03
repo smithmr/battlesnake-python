@@ -137,14 +137,6 @@ def find_weaker_snake_head(data):
 
     return (closeSnakex,closeSnakey)
 
-def build_snake_positions(data):
-    snakes = data['snakes']['data']
-    snake_positions = {}
-    for snake in snakes:
-        body_parts = snake['body']['data']
-        for part in body_parts:
-            snake_positions[(part['x'], part['y'])] = 1;
-
 def find_close_food(data,xhead,yhead):
     food = data['food']
     closeFoodDist = 1000
