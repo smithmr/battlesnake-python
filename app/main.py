@@ -41,11 +41,8 @@ def move():
     height = data['height']
     width = data['width']
     directions = ['up', 'down', 'left', 'right']
-    ourSnak = {}
+    ourSnak = data['you']
 
-    for snake in data['snakes']['data']:
-        if snake['name'] == 'JSTMNA':
-            ourSnak = snake
 
     parts = ourSnak['body']['data']
     xhead = parts[0]['x']
@@ -151,6 +148,6 @@ application = bottle.default_app()
 if __name__ == '__main__':
     bottle.run(
         application,
-        host=os.getenv('IP', '172.20.10.2'),
+        host=os.getenv('IP', '192.168.97.177'),
         port=os.getenv('PORT', '8080'),
         debug = True)
