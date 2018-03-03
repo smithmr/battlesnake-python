@@ -42,12 +42,14 @@ def move():
     width = data['width']
     directions = ['up', 'down', 'left', 'right']
     ourSnak = data['you']
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 
     parts = ourSnak['body']['data']
     xhead = parts[0]['x']
     yhead = parts[0]['y']
-
 
     snake_length = ourSnak['length']
     xtail = parts[snake_length-1]['x']
@@ -123,7 +125,29 @@ def find_food(close_food,xhead,yhead,directions):
             return directions[0]
     return directions[1]
 
+def find_weaker_snake_head(data):
+    our_snek = data['you']
+    our_snek_len = len(our_snek['body']['data'])
+    our_snek_id = our_snek['id']
+    closeSnakex = False
+    closeSnakey = False
+    snakes = data['snakes']['data']
+    for snake in snakes:
+        body_parts = snake['body']['data']
+        if len(body_parts) < our_snek_len and snake['id'] != our_snek_id:
+            closeSnakex = body_parts['x']
+            closeSnakey = body_parts['y']
+            return (closeSnakex,closeSnakey)
 
+    return (closeSnakex,closeSnakey)
+
+def build_snake_positions(data):
+    snakes = data['snakes']['data']
+    snake_positions = {}
+    for snake in snakes:
+        body_parts = snake['body']['data']
+        for part in body_parts:
+            snake_positions[(part['x'], part['y'])] = 1;
 
 def find_close_food(data,xhead,yhead):
     food = data['food']
