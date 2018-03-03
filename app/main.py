@@ -51,8 +51,18 @@ def move():
     xhead = parts[0]['x']
     yhead = parts[0]['y']
 
-    close_food = find_close_food(data,xhead, yhead)
-    dirr = find_food(close_food,xhead,yhead,directions)
+
+    snake_length = ourSnak['length']
+    xtail = parts[snake_length-1]['x']
+    ytail = parts[snake_length-1]['y']
+    tail = (xtail, ytail)
+
+    if (ourSnak['data']['health'] < 50 ):
+        close_food = find_close_food(data,xhead, yhead)
+        dirr = find_food(close_food,xhead,yhead,directions)
+    else:
+        dirr = find_food(tail, xhead,yhead,directions)
+
     nextdirrxy = find_next(dirr,xhead,yhead)
     danger = danger_zone(data,nextdirrxy,height,width)
     print(danger)
@@ -65,6 +75,8 @@ def move():
         'move': dirr,
         'taunt': 'battlesnake-python!'
     }
+
+
 
 def choose_next_dirr(dirr,directions,xhead,yhead,data,height,width):
     for move in directions:
