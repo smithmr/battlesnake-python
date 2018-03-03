@@ -41,7 +41,7 @@ def move():
     height = data['height']
     width = data['width']
     directions = ['up', 'down', 'left', 'right']
-    ourSnak
+    ourSnak {}
 
     for snake in data['snakes']:
         if snake['name'] == 'JSTMNA':
