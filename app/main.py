@@ -54,7 +54,7 @@ def move():
     ytail = parts[snake_length-1]['y']
     tail = (xtail, ytail)
 
-    if (ourSnak['health'] < 50 ):
+    if (ourSnak['health'] < 50 or ourSnak['length']<5 ):
         close_food = find_close_food(data,xhead, yhead)
         dirr = find_food(close_food,xhead,yhead,directions)
     else:
