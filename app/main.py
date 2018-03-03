@@ -80,9 +80,7 @@ def danger_zone(data,nextdirr,height,width):
     for snake in snakes['data']:
         body = snake['body']['data']
         for part in body:
-            if part['x'] == nextdirr[0]:
-                return True
-            if part['y'] == nextdirr[1]:
+            if part['x'] == nextdirr[0] and part['y']==nextdirr[1]:
                 return True
     if nextdirr[0] == width or nextdirr[0]==-1:
         return True
