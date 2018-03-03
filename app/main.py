@@ -62,7 +62,6 @@ def move():
 
     nextdirrxy = find_next(dirr,xhead,yhead)
     danger = danger_zone(data,nextdirrxy,height,width)
-    print(danger)
     if danger:
         dirr = choose_next_dirr(dirr,directions,xhead,yhead,data,height,width)
 
