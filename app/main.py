@@ -131,10 +131,10 @@ def find_weaker_snake_head(data):
     closeSnakey = False
     snakes = data['snakes']['data']
     for snake in snakes:
-        body_parts = snake['body']['data']
+        head = snake['body']['data'][0]
         if snake['length'] < our_snek_len:
-            closeSnakex = body_parts['x']
-            closeSnakey = body_parts['y']
+            closeSnakex = head['x']
+            closeSnakey = head['y']
             return (closeSnakex,closeSnakey)
 
     return (closeSnakex,closeSnakey)
