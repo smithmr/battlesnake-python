@@ -52,11 +52,13 @@ def move():
     ytail = parts[snake_length-1]['y']
     tail = (xtail, ytail)
     weaker_snake = find_weaker_snake_head(data, snake_length)
-    if (weaker_snake[0]==False):
+    if (ourSnak['health'] < 75 or ourSnak['length']<8 ):
         close_food = find_close_food(data,xhead, yhead)
         dirr = find_food(close_food,xhead,yhead,directions)
-    else:
+    elif (weaker_snake[0]!=False):
         dirr = find_food(weaker_snake, xhead,yhead,directions)
+    else:
+        dirr = find_food(tail, xhead,yhead,directions)
 
     nextdirrxy = find_next(dirr,xhead,yhead)
     danger = danger_zone(data,nextdirrxy,height,width)
