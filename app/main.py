@@ -51,7 +51,7 @@ def move():
     xtail = parts[snake_length-1]['x']
     ytail = parts[snake_length-1]['y']
     tail = (xtail, ytail)
-    weaker_snake = find_weaker_snake_head(data)
+    weaker_snake = find_weaker_snake_head(data, snake_length)
     if (ourSnak['health'] < 25 or ourSnak['length']<5 ):
         close_food = find_close_food(data,xhead, yhead)
         dirr = find_food(close_food,xhead,yhead,directions)
@@ -123,9 +123,9 @@ def find_food(close_food,xhead,yhead,directions):
             return directions[0]
     return directions[1]
 
-def find_weaker_snake_head(data):
+def find_weaker_snake_head(data, our_snek_len):
     our_snek = data['you']
-    our_snek_len = ourSnak['length']
+
     our_snek_id = our_snek['id']
     closeSnakex = False
     closeSnakey = False
