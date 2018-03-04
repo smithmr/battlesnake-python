@@ -2,7 +2,7 @@ import bottle
 import os
 import random
 
-
+tail_postition ={[]]
 
 @bottle.route('/')
 def static():
@@ -54,7 +54,7 @@ def move():
     weaker_snake = find_weaker_snake_head(data, snake_length)
     close_food = find_close_food(data,xhead, yhead)
     taunt = "what to do?"
-    if (ourSnak['health'] < 50 or ourSnak['length']<10 ):
+    if (ourSnak['health'] < 99 or ourSnak['length']<10 ):
         dirr = find_food(close_food,xhead,yhead,directions)
         taunt = "eat fooooooood!"
     elif (weaker_snake[0]!=False):
@@ -76,7 +76,22 @@ def move():
         'taunt': taunt
     }
 
-
+def follow_tail(tail,xhead,yhead,directions):
+    closeFoodx = close_food[0]
+    closeFoody = close_food[1]
+    movx = closeFoodx-xhead
+    movy = closeFoody-yhead
+    if movx !=0:
+        if movx>0:
+            return directions[3]
+        elif movx<0:
+            return directions[2]
+    if movy !=0:
+        if movy>0:
+            return directions[1]
+        elif movy<0:
+            return directions[0]
+    return directions[1]
 
 def choose_next_dirr(dirr,directions,xhead,yhead,data,height,width):
     for move in directions:
