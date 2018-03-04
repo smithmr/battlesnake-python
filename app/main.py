@@ -30,7 +30,7 @@ def start():
 
     return {
         'color': '#0B83B6',
-        'taunt': '{} ({}x{})'.format(game_id, board_width, board_height),
+        'taunt': 'sluts'
         'head_url': head_url
     }
 
@@ -165,6 +165,6 @@ application = bottle.default_app()
 if __name__ == '__main__':
     bottle.run(
         application,
-        host=os.getenv('IP', '192.168.97.177'),
+        host=os.getenv('IP', '192.168.1.111'),
         port=os.getenv('PORT', '8080'),
         debug = True)
