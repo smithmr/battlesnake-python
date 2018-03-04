@@ -30,7 +30,7 @@ def start():
 
     return {
         'color': '#0B83B6',
-        'taunt': 'sluts'
+        'taunt': 'sluts',
         'head_url': head_url
     }
 
