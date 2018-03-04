@@ -2,7 +2,7 @@ import bottle
 import os
 import random
 
-tail_postition ={[]]
+tail_postition ={}
 
 @bottle.route('/')
 def static():
