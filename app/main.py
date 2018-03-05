@@ -54,7 +54,7 @@ def move():
     weaker_snake = find_weaker_snake_head(data, snake_length)
     close_food = find_close_food(data,xhead, yhead)
     taunt = "what to do?"
-    if (ourSnak['health'] < 90 or ourSnak['length']<10 ):
+    if (ourSnak['health'] < 25 or ourSnak['length']<10 ):
         dirr = find_food(close_food,xhead,yhead,directions)
         taunt = "eat fooooooood!"
     elif (weaker_snake[0]!=False):
