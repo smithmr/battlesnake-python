@@ -1,7 +1,7 @@
 import bottle
 import os
 import random
-
+import operator
 tail_postition ={}
 
 @bottle.route('/')
@@ -67,22 +67,13 @@ def move():
     nextdirrxy = find_next(dirr,xhead,yhead)
     danger = danger_zone(data,nextdirrxy,height,width)
     if danger:
+        taunt ='danger'
         count_up = flood_fill(data,directions[0],xhead,yhead,height,width)
         count_down = flood_fill(data,directions[1],xhead,yhead,height,width)
         count_left = flood_fill(data,directions[2],xhead,yhead,height,width)
         count_right = flood_fill(data,directions[3],xhead,yhead,height,width)
-        counts = [count_up,count_down,count_left,count_right]
-        if count_up>count_down:
-            if count_up>count_left:
-                if count_up>count_right:
-                    dirr = 'up'
-        elif count_down >count_left:
-            if count_down >count_right:
-                dirr = 'down'
-        elif count_left>count_right:
-            dirr = 'left'
-        else:
-            dirr = 'right'
+        counts = {'up':count_up,'down':count_down,'left':count_left,'right':count_right}
+        dirr = max(counts.iteritems(), key=operator.itemgetter(1))[0]
 
     return {
         'move': dirr,
@@ -90,12 +81,13 @@ def move():
     }
 
 def flood_fill(data, dirr, xhead, yhead, height, width):
-    next_dirr = find_next(dirr)
+    directions = ['up', 'down', 'left', 'right']
+    next_dirr = find_next(dirr,xhead,yhead)
     count = 0
     while (danger_zone(data, next_dirr,height, width)!=True):
         count = count+1
         dirr = choose_next_dirr(dirr, directions, next_dirr[0],next_dirr[1], data, height, width)
-        next_dirr = find_next(dirr)
+        next_dirr = find_next(dirr,next_dirr[0], next_dirr[1])
         if count>10:
             break
     return count
@@ -131,6 +123,8 @@ def danger_zone(data,nextdirr,height,width):
     for snake in snakes['data']:
         body = snake['body']['data']
         for part in body:
+            if part == snake['length']:
+                break
             if part['x'] == nextdirr[0] and part['y']==nextdirr[1]:
                 return True
     if nextdirr[0] == width or nextdirr[0]==-1:
