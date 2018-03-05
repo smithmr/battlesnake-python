@@ -54,7 +54,7 @@ def move():
     weaker_snake = find_weaker_snake_head(data, snake_length)
     close_food = find_close_food(data,xhead, yhead)
     taunt = "what to do?"
-    if (ourSnak['health'] < 25 or ourSnak['length']<10 ):
+    if (ourSnak['health'] < 50 or ourSnak['length']<10 ):
         dirr = find_food(close_food,xhead,yhead,directions)
         taunt = "eat fooooooood!"
     elif (weaker_snake[0]!=False):
@@ -90,7 +90,9 @@ def flood_fill(data, dirr, xhead, yhead, height, width,tail):
     count = 0
     while (danger_zone(data, next_dirr,height, width,tail)!=True):
         count = count+1
+        print(dirr)
         dirr = choose_next_dirr(dirr, directions, next_dirr[0],next_dirr[1], data, height, width,tail)
+        print(dirr)
         print(next_dirr)
         next_dirr = find_next(dirr,next_dirr[0], next_dirr[1])
         print(next_dirr)
