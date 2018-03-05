@@ -91,7 +91,9 @@ def flood_fill(data, dirr, xhead, yhead, height, width,tail):
     while (danger_zone(data, next_dirr,height, width,tail)!=True):
         count = count+1
         dirr = choose_next_dirr(dirr, directions, next_dirr[0],next_dirr[1], data, height, width,tail)
+        print(next_dirr)
         next_dirr = find_next(dirr,next_dirr[0], next_dirr[1])
+        print(next_dirr)
         if count>10:
             break
     return count
