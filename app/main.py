@@ -96,6 +96,8 @@ def flood_fill(data, dirr, xhead, yhead, height, width):
         count = count+1
         dirr = choose_next_dirr(dirr, directions, next_dirr[0],next_dirr[1], data, height, width)
         next_dirr = find_next(dirr)
+        if count>10:
+            break
     return count
 
 def follow_tail(tail,xhead,yhead,directions):
