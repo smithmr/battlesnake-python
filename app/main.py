@@ -67,10 +67,10 @@ def move():
     nextdirrxy = find_next(dirr,xhead,yhead)
     danger = danger_zone(data,nextdirrxy,height,width)
     if danger:
-        count_up = flood_fill(directions[0])
-        count_down = flood_fill(directions[1])
-        count_left = flood_fill(directions[2])
-        count_right = flood_fill(directions[3])
+        count_up = flood_fill(data,directions[0],xhead,yhead,height,width)
+        count_down = flood_fill(data,directions[1],xhead,yhead,height,width)
+        count_left = flood_fill(data,directions[2],xhead,yhead,height,width)
+        count_right = flood_fill(data,directions[3],xhead,yhead,height,width)
         counts = [count_up,count_down,count_left,count_right]
         if count_up>count_down:
             if count_up>count_left:
