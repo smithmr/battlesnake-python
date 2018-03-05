@@ -54,7 +54,7 @@ def move():
     weaker_snake = find_weaker_snake_head(data, snake_length)
     close_food = find_close_food(data,xhead, yhead)
     taunt = "what to do?"
-    if (ourSnak['health'] < 99 or ourSnak['length']<10 ):
+    if (ourSnak['health'] < 50 or ourSnak['length']<10 ):
         dirr = find_food(close_food,xhead,yhead,directions)
         taunt = "eat fooooooood!"
     elif (weaker_snake[0]!=False):
@@ -67,14 +67,36 @@ def move():
     nextdirrxy = find_next(dirr,xhead,yhead)
     danger = danger_zone(data,nextdirrxy,height,width)
     if danger:
-        dirr = choose_next_dirr(dirr,directions,xhead,yhead,data,height,width)
-
-
+        count_up = flood_fill(directions[0])
+        count_down = flood_fill(directions[1])
+        count_left = flood_fill(directions[2])
+        count_right = flood_fill(directions[3])
+        counts = [count_up,count_down,count_left,count_right]
+        if count_up>count_down:
+            if count_up>count_left:
+                if count_up>count_right:
+                    dirr = 'up'
+        elif count_down >count_left:
+            if count_down >count_right:
+                dirr = 'down'
+        elif count_left>count_right:
+            dirr = 'left'
+        else:
+            dirr = 'right'
 
     return {
         'move': dirr,
         'taunt': taunt
     }
+
+def flood_fill(data, dirr, xhead, yhead, height, width):
+    next_dirr = find_next(dirr)
+    count = 0
+    while (danger_zone(data, next_dirr,height, width)!=True):
+        count = count+1
+        dirr = choose_next_dirr(dirr, directions, next_dirr[0],next_dirr[1], data, height, width)
+        next_dirr = find_next(dirr)
+    return count
 
 def follow_tail(tail,xhead,yhead,directions):
     closeFoodx = close_food[0]
